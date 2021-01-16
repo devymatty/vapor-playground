@@ -6,10 +6,7 @@ struct AlfaController: RouteCollection {
         
         alfaRoute.get("info", use: getInfoHandler)
         alfaRoute.get("reports", use: getReports)
-        
-//        usersRoute.get(use: getAllHandler)
-//        usersRoute.get(":userID", use: getHandler)
-//        usersRoute.get(":userID", "acronyms", use: getAcronymsHandler)
+        alfaRoute.get("report","01", use: getReportDetail)
     }
     
     func getInfoHandler(_ req: Request) throws -> String {
@@ -42,6 +39,23 @@ struct AlfaController: RouteCollection {
                     "date": "01-12-2020"
                 }
             ]
+        }
+        """
+    }
+    
+    func getReportDetail(_ req: Request) throws -> String {
+        """
+        {
+            "name": "Какое-то наименование",
+            "number": 12345678901,
+            "date": "05-07-2020",
+            "sum": 10500.00,
+            "department": "Название из справочника",
+            "article": "Название из справочника",
+            "event_name": "Корпоратив (Ручной ввод)",
+            "event_purpose": "Провести кастдев (Ручной ввод)",
+            "event_date": "05-07-2020",
+            "event_location": ""
         }
         """
     }

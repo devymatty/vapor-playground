@@ -8,6 +8,17 @@ func routes(_ app: Application) throws {
     let acronymsController = AcronymsController()
     try app.register(collection: acronymsController)
     
+    app.get("api", "acronyms", use: acronymsController.getAllHandler)
+    
+    let userController = UsersController()
+    try app.register(collection: userController)
+    
+    let categoriesController = CategoriesController()
+    try app.register(collection: categoriesController)
+    
+    let alfaController = AlfaController()
+    try app.register(collection: alfaController)
+    
     //    app.get("index") { req -> EventLoopFuture<View> in
     //        struct Context: Encodable {
     //            let title: String
@@ -17,7 +28,7 @@ func routes(_ app: Application) throws {
     //        let context = Context(title: "My Playground - Leaf Lesson", body: "Hello Leaf!")
     //        return req.view.render("index", context)
     //    }
-    
+
     //    let router = FrontendRouter()
     //    try router.boot(routes: app.routes)
     
@@ -28,12 +39,6 @@ func routes(_ app: Application) throws {
     //    for router in routers {
     //        try router.boot(routes: app.routes)
     //    }
-    
-    
-    app.get(
-      "api",
-      "acronyms",
-      use: acronymsController.getAllHandler)
 }
 
 

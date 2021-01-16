@@ -22,11 +22,14 @@ public func configure(_ app: Application) throws {
         as: .psql
     )
     
-    
-    
-    app.migrations.add(CreateAcronym())
+
     
     app.logger.logLevel = .debug
+    
+    app.migrations.add(CreateUser())
+    app.migrations.add(CreateAcronym())
+    app.migrations.add(CreateCategory())
+    app.migrations.add(CreateAcronymCategoryPivot())
     
     try app.autoMigrate().wait()
     

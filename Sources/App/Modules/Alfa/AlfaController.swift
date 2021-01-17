@@ -2,15 +2,16 @@ import Vapor
 
 struct AlfaController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        let alfaRoute = routes.grouped("api", "alfa")
+        let apiRoute = routes.grouped("alfa", "api")
         
-        alfaRoute.get("info", use: getInfoHandler)
-        alfaRoute.get("reports", use: getReports)
-        alfaRoute.get("report","01", use: getReportDetail)
+        apiRoute.get("reports/token", use: getToken)
+        apiRoute.get("reports", use: getReports)
+        apiRoute.get("reports","1", use: getReportDetail)
     }
     
-    func getInfoHandler(_ req: Request) throws -> String {
-        "{\"key\":\"value\"}"
+    func getToken(_ req: Request) throws -> String  {
+        
+        "123456"
     }
     
     func getReports(_ req: Request) throws -> String {

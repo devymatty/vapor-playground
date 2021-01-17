@@ -1,6 +1,6 @@
 #!/bin/bash
 
-server_address=10.128.0.20
+server_address=10.128.0.35
 server_port=80
 
 git pull

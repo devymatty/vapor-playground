@@ -1,0 +1,87 @@
+{
+    "result": "Выполнено успешно",
+    "advReports": [
+        {
+            "ID": {
+                "description": "ИД Подотчетного лица",
+                "type": "int",
+                "required": "false",
+                "value": 775026
+            },
+            "costs": [
+                {
+                    "namePD": {
+                        "description": "Наименование ПД",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Наименование ПД"
+                    },
+                    "numberPD": {
+                        "description": "Номер ПД",
+                        "type": "string",
+                        "required": "false",
+                        "value": "23421"
+                    },
+                    "datePD": {
+                        "description": "Дата ПД",
+                        "type": "string",
+                        "required": "false",
+                        "value": "26.08.2020"
+                    },
+                    "summPD": {
+                        "description": "Сумма ПД",
+                        "type": "string",
+                        "required": "false",
+                        "value": "124687"
+                    },
+                    "compensationSumm": {
+                        "description": "Сумма возмещения ",
+                        "type": "string",
+                        "required": "false",
+                        "value": "124687"
+                    },
+                    "department": {
+                        "description": "Подразделение",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Подразделение"
+                    },
+                    "expenditure": {
+                        "description": "Статья расхода",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Статья расхода"
+                    },
+                    "expendituresFor": {
+                        "description": "Цель расхода",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Цель расхода"
+                    }
+                }
+            ],
+            "recipients": [
+                {
+                    "FIO": {
+                        "description": "Фамилия Имя Отчество",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Ивано Иван Иванович"
+                    },
+                    "position": {
+                        "description": "Должность",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Менеджер"
+                    },
+                    "note": {
+                        "description": "Примечание",
+                        "type": "string",
+                        "required": "false",
+                        "value": "Примечание"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -6,6 +6,7 @@ struct CategoriesController: RouteCollection {
         categoriesRoute.post(use: createHandler)
         categoriesRoute.get(use: getAllHandler)
         categoriesRoute.get(":categoryID", use: getHandler)
+        categoriesRoute.get(":categoryID", "acronyms", use: getAcronymsHandler)
     }
     
     func createHandler(_ req: Request) throws -> EventLoopFuture<Category> {

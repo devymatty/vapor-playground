@@ -17,6 +17,7 @@ struct AcronymsController: RouteCollection {
         acronymsRoutes.get(":acronymID", "user", use: getUserHandler)
         acronymsRoutes.post(":acronymID", "categories", ":categoryID", use: addCategoriesHandler)
         acronymsRoutes.get(":acronymID", "categories", use: getCategoriesHandler)
+        acronymsRoutes.delete(":acronymID", "categories", ":categoryID", use: removeCategoriesHandler)
     }
     
     func getAllHandler(_ req: Request) throws -> EventLoopFuture<[Acronym]> {
@@ -126,6 +127,19 @@ struct AcronymsController: RouteCollection {
         .unwrap(or: Abort(.notFound))
         .flatMap { acronym in
             acronym.$categories.query(on: req.db).all()
+        }
+    }
+    
+    func removeCategoriesHandler(_ req: Request) throws -> EventLoopFuture<HTTPStatus> {
+      let acronymQuery = Acronym.find(req.parameters.get("acronymID"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+      let categoryQuery = Category.find(req.parameters.get("categoryID"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+      return acronymQuery.and(categoryQuery)
+        .flatMap { acronym, category in
+          acronym.$categories
+            .detach(category, on: req.db)
+            .transform(to: .noContent)
         }
     }
 }

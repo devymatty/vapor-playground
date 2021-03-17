@@ -5,34 +5,40 @@ struct AlfaController: RouteCollection {
         let apiRoute = routes.grouped("alfa", "api")
         
         apiRoute.get("auth", use: getAuth)
-        apiRoute.get("advancereport", use: getReports)
-        apiRoute.get("reports","1", use: getReportDetail)
+        apiRoute.get("reports", use: getReports)
+        apiRoute.get("reportdetail", use: getReportDetail)
     }
     
-    func getAuth(_ req: Request) throws -> String  {
-        guard let basic = req.headers.basicAuthorization else {
-            throw Abort(.badRequest, reason: "No login")
+    func getAuth(_ req: Request) throws -> Response  {
+        let data = try req.query.decode(LoginData.self)
+        
+        if data.login != "test_login" {
+            throw Abort(.badRequest, reason: "Bad Login")
         }
-        guard basic.username == "alfacapital\\m.matveev"
-//              basic.password == "12345678"
-        else {
-            throw Abort(.badRequest, reason: "Bad Login or Password")
-        }
-        return "123456"
-    }
-    
-    func getReports(_ req: Request) throws -> String {
-        guard let context = req.headers.first(name: "x-UserContextDirectum"),
-             context == "123456" else {
-            throw Abort(.unauthorized, reason: "Bad Login or Password")
+        if data.password != "12345678" {
+            throw Abort(.badRequest, reason: "Bad Password")
         }
         
-        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfaAdvanceReport.json"),
+        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/loginToken.json"),
+              let json = String(data: jsonData, encoding: .utf8) else {
+            throw Abort(.internalServerError, reason: "No read file loginToken.json")
+        }
+        
+        return Response(status: .ok, body: .init(string: json))
+    }
+    
+    func getReports(_ req: Request) throws -> Response {
+        guard let token = req.headers.bearerAuthorization?.token,
+              token == "1-23-452-98-7" else {
+            throw Abort(.unauthorized, reason: "Bad Token")
+        }
+        
+        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/reportsList.json"),
               let json = String(data: jsonData, encoding: .utf8) else {
             throw Abort(.internalServerError, reason: "No read file alfaAdvanceReport.json")
         }
 
-        return json
+        return Response(status: .ok, body: .init(string: json))
     }
     
     func getReportDetail(_ req: Request) throws -> String {
@@ -51,4 +57,9 @@ struct AlfaController: RouteCollection {
         }
         """
     }
+}
+
+struct LoginData: Content {
+    let login: String
+    let password: String
 }

@@ -4,7 +4,7 @@
         "number": 12,
         "date": "05-07-2019",
         "sum": 12500.00,
-        "status": "accepted"
+        "status": "accepted",
         "type": "full"
     },
     {
@@ -12,7 +12,7 @@
         "number": 14,
         "date": "05-07-2019",
         "sum": 500.05,
-        "status": "accepted"
+        "status": "accepted",
         "type": "short"
     },
     {
@@ -20,7 +20,7 @@
         "number": 24,
         "date": "02-07-2019",
         "sum": 50000.50,
-        "status": "waiting"
+        "status": "waiting",
         "type": "full"
     },
     {
@@ -28,7 +28,7 @@
         "number": 123,
         "date": "06-10-2020",
         "sum": 50000.50,
-        "status": "accepted"
+        "status": "accepted",
         "type": "full"
     },
     {
@@ -36,7 +36,7 @@
         "number": 201,
         "date": "06-10-2020",
         "sum": 50000.50,
-        "status": "decline"
+        "status": "decline",
         "type": "full"
     },
 ]

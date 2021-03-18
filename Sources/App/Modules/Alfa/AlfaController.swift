@@ -18,8 +18,8 @@ struct AlfaController: RouteCollection {
         if data.password != "12345678" {
             throw Abort(.badRequest, reason: "Bad Password")
         }
-        
-        guard let jsonData = FileManager.default.contents(atPath: "Resources/Json/Alfa/LoginToken.json"),
+
+        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/LoginToken.json"),
               let json = String(data: jsonData, encoding: .utf8) else {
             throw Abort(.internalServerError, reason: "No read file loginToken.json")
         }
@@ -63,3 +63,17 @@ struct LoginData: Content {
     let login: String
     let password: String
 }
+
+//extension Data {
+//    static func fromFile(
+//        _ fileName: String,
+//        folder: String = "Resources/json"
+//    ) throws -> Data {
+//        let directory = DirectoryConfig.detect()
+//        let fileURL = URL(fileURLWithPath: directory.workDir)
+//            .appendingPathComponent(folder, isDirectory: true)
+//            .appendingPathComponent(fileName, isDirectory: false)
+//
+//        return try Data(contentsOf: fileURL)
+//    }
+//}

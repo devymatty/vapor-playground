@@ -1,5 +1,5 @@
 import Vapor
- 
+
 struct BlogRepository {
     
     func publishedPosts() -> [BlogPost] {

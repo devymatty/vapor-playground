@@ -19,7 +19,7 @@ struct AlfaController: RouteCollection {
             throw Abort(.badRequest, reason: "Bad Password")
         }
         
-        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/loginToken.json"),
+        guard let jsonData = FileManager.default.contents(atPath: "Resources/Json/Alfa/LoginToken.json"),
               let json = String(data: jsonData, encoding: .utf8) else {
             throw Abort(.internalServerError, reason: "No read file loginToken.json")
         }
@@ -33,7 +33,7 @@ struct AlfaController: RouteCollection {
             throw Abort(.unauthorized, reason: "Bad Token")
         }
         
-        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/reportsList.json"),
+        guard let jsonData = FileManager.default.contents(atPath: "Resources/json/alfa/ReportsList.json"),
               let json = String(data: jsonData, encoding: .utf8) else {
             throw Abort(.internalServerError, reason: "No read file alfaAdvanceReport.json")
         }
